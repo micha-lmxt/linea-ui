@@ -8,7 +8,7 @@ export const PA = baseAction((node, props) => {
     return {classes:PR(props)}
 })
 
-export const PR = (perops, ...other) => [
+export const PR = (props={}, ...other) => [
         ...getColor(props.color,props.colorDark),
         text_base,
         p_2, m_2

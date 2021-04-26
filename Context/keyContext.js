@@ -12,7 +12,7 @@ export const setContext = (key,value) => {
         item.value = value;
         return;
     }
-    keyContextStore.set(key,{value,subscriptions:new Map());
+    keyContextStore.set(key,{value,subscriptions:new Map()});
 };
 
 export const getContext = (key,update,node) => {

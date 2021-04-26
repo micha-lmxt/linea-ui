@@ -20,7 +20,8 @@ import { sm_static } from "linea-ui-project-css/css/sm:static.js";
 import { md_static } from "linea-ui-project-css/css/md:static.js";
 import { lg_static } from "linea-ui-project-css/css/lg:static.js";
 import { drawerSize } from './drawerSize';
-import { setContext } from '../../Context/keyContext'
+import { setContext } from '../../Context/keyContext';
+import { z_40 } from 'linea-ui-project-css/css/z-40';
 
 export const drawerA = baseAction((node, props) => {
     
@@ -76,7 +77,8 @@ export const drawerR = (props, ...other) => {
         absolute, top_0, overflow_hidden, 
         h_full, z_20,
         ...bp,
-        drawerSize(size)
+        drawerSize(size),
+        z_40,
     ].concat(other);
 }
 

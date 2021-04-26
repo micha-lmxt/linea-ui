@@ -9,7 +9,7 @@ export const H5A = baseAction((node, props) => {
     return {classes:H5R(props)}
 })
 
-export const H5R = (props,...other) => [
+export const H5R = (props={},...other) => [
         ...getColor(props.color,props.colorDark),
         text_base,
         p_2, m_2, font_bold

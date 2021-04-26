@@ -5,7 +5,7 @@ import { getBgColor } from '../../utils/getBgColor';
 
 export const listItemIndicatorA = baseAction((node, props) => {
 
-    const classes
+    const classes = listItemIndicator(props)
 
     return { classes }
 })

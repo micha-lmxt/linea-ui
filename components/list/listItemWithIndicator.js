@@ -5,22 +5,20 @@ import { justify_between } from 'linea-ui-project-css/css/justify-between';
 import { p_2 } from 'linea-ui-project-css/css/p-2';
 import { m_2 } from 'linea-ui-project-css/css/m-2';
 
-export const listItemWithIndicator = baseAction((node, props) => {
+export const listItemWithIndicatorA = baseAction((node, props) => {
 
 
 
-    return { classes }
+    return { classes:_listItemWithIndicatorR }
 })
 
-const listItemWithIndicatorR = [
+const _listItemWithIndicatorR = [
         flex,
         flex_row,
         justify_between,
         p_2, m_2
     ]
 
-const listItemWithIndicatorR = (props, ...other) => listItemWithIndicatorR.concat(other)
-
-const listItemWithIndicator = listItemWithIndicatorR.join(' ');
+const listItemWithIndicatorR = (props, ...other) => _listItemWithIndicatorR.concat(other)
 
 const listItemWithIndicator = (props, ...other) => listItemWithIndicatorR(props, ...other).join(' ');

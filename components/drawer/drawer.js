@@ -22,7 +22,7 @@ import { lg_static } from "linea-ui-project-css/css/lg:static.js";
 import { drawerSize } from './drawerSize';
 import { setContext } from '../../Context/keyContext'
 
-export const drawer = baseAction((node, props) => {
+export const drawerA = baseAction((node, props) => {
     
     const { open = true, right = false } = props;
 

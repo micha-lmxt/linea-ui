@@ -25,7 +25,7 @@ export const drawerButtonA = (node, props) => {
 
     return {
         update,
-        destroy:() => unsubscribe(context,node);
+        destroy:() => unsubscribe(context,node)
     }
 }
 

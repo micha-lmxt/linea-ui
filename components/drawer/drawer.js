@@ -53,6 +53,8 @@ export const drawerR = (props, ...other) => {
 
     let subscriptions = [];
 
+    const dir = right ? translate_x_full : _translate_x_full;
+    
     let slide = [
             transform,
             ...(animate ? [transition_transform, duration_700, ease_out] : []),
@@ -60,7 +62,7 @@ export const drawerR = (props, ...other) => {
         ];
         
         
-    const dir = right ? translate_x_full : _translate_x_full;
+     
     
     let bp = closeBreakpoint === "sm" ? [sm_translate_x_0,sm_,sm_static] :
         closeBreakpoint === "md" ? [md_translate_x_0,md_static] : 

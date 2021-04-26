@@ -10,7 +10,7 @@ import {getContext, unsubscribe} from '../../Context/keyContext';
 import { sm_hidden} from 'linea-ui-project-css/css/sm:hidden';
 import { md_hidden} from 'linea-ui-project-css/css/md:hidden';
 import { lg_hidden} from 'linea-ui-project-css/css/lg:hidden';
-import { opacity_400 } from 'linea-ui-project-css/css/opacity-400';
+import { opacity_40 } from 'linea-ui-project-css/css/opacity-40';
 import { opacity_0} from 'linea-ui-project-css/css/opacity-0';
 
 
@@ -40,7 +40,7 @@ export const clickAwayAreaR = (props={}, ...other) => {
         closeBreakpoint === "md" ? [md_hidden] :
             closeBreakpoint === "lg" ?
             [lg_hidden] : [])
-        .concat([open?opacity_400:opacity_0,absolute,inset_0,m_0,
+        .concat([open?opacity_40:opacity_0,absolute,inset_0,m_0,
                  transition_opacity,duration_700])
         .concat(open?[z_30]:[])
         .concat(other);

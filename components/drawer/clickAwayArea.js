@@ -10,8 +10,8 @@ import {getContext, unsubscribe} from '../../Context/keyContext';
 import { sm_hidden} from 'linea-ui-project-css/css/sm:hidden';
 import { md_hidden} from 'linea-ui-project-css/css/md:hidden';
 import { lg_hidden} from 'linea-ui-project-css/css/lg:hidden';
-import { opacity_400 } from 'linea-ui-project-css/opacity-400';
-import { opacity_0} from 'linea-ui-project-css/opacity-0';
+import { opacity_400 } from 'linea-ui-project-css/css/opacity-400';
+import { opacity_0} from 'linea-ui-project-css/css/opacity-0';
 
 
 export const clickAwayAreaA = (node, props) => {

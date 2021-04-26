@@ -6,12 +6,10 @@ import {fill_current} from 'linea-ui-project-css/css/fill-current';
 import {c} from 'linea-ui-project-css/css/c';
 import { opacity_30} from 'linea-ui-project-css/css/opacity-30';
 
-export const textButton = chainAction(baseAction((node, props) => {
+export const textButtonA = chainAction(baseAction((node, props) => {
 
     return {
-        classes: getBgColor(props.background,props.backgroundDark)
-            .concat(getColor(props.color,props.colorDark))
-    }
+        classes: textButtonR(props)}
 }),
     (node, props = {}) => {
         const rippleBaseProps=(xprops)=>({
@@ -39,3 +37,9 @@ export const textButton = chainAction(baseAction((node, props) => {
 
         }
     })
+    
+export const textButtonR = (props, ...other) => getBgColor(props.background,props.backgroundDark)
+            .concat(getColor(props.color,props.colorDark))
+            .concat(other)
+    
+export const textButton = (props, ...other) => textButtonR(props, ...other).join(' ');

@@ -7,12 +7,20 @@ import { m_2 } from 'linea-ui-project-css/css/m-2';
 
 export const listItemWithIndicator = baseAction((node, props) => {
 
-    const classes = [
+
+
+    return { classes }
+})
+
+const listItemWithIndicatorR = [
         flex,
         flex_row,
         justify_between,
         p_2, m_2
     ]
 
-    return { classes }
-})
+const listItemWithIndicatorR = (props, ...other) => listItemWithIndicatorR.concat(other)
+
+const listItemWithIndicator = listItemWithIndicatorR.join(' ');
+
+const listItemWithIndicator = (props, ...other) => listItemWithIndicatorR(props, ...other).join(' ');

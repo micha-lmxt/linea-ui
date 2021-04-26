@@ -20,22 +20,18 @@ import { sm_static } from "linea-ui-project-css/css/sm:static.js";
 import { md_static } from "linea-ui-project-css/css/md:static.js";
 import { lg_static } from "linea-ui-project-css/css/lg:static.js";
 import { drawerSize } from './drawerSize';
-
+import { setContext } from '../../Context/keyContext'
 
 export const drawer = baseAction((node, props) => {
     
-    const { open = true, animate = "auto", right = false , closeBreakpoint = "md" ,size} = props;
+    const { open = true, right = false } = props;
 
     let subscriptions = [];
-
-    let slide = [];
+    
     const dir = right ? translate_x_full : _translate_x_full;
     
     if (typeof open.subscribe === "function") {
         // open is a store
-
-        slide = animate ? [transition_transform, transform, duration_700, ease_out] : [transform];
-        
         // subscribe to open
         subscriptions.push(open.subscribe((value) => {
             if (value) {
@@ -46,26 +42,40 @@ export const drawer = baseAction((node, props) => {
             node.classList.add(dir);
         }));
 
-    } else {
-        // open is no store
-        slide = [
+    } 
+    
+
+    return { subscriptions, classes: drawerR(props) };
+})
+
+export const drawerR = (props, ...other) => {
+    const { open = true, animate = "auto", right = false , closeBreakpoint = "md" , size, context="drawer"} = props;
+
+    let subscriptions = [];
+
+    let slide = [
             transform,
             ...(animate ? [transition_transform, duration_700, ease_out] : []),
             ...(open ? [] : [dir])
         ];
-    }
-
+        
+        
+    const dir = right ? translate_x_full : _translate_x_full;
+    
     let bp = closeBreakpoint === "sm" ? [sm_translate_x_0,sm_,sm_static] :
         closeBreakpoint === "md" ? [md_translate_x_0,md_static] : 
         closeBreakpoint === "lg" ? [lg_translate_x_0,lg_static] : [];
     
+    setContext(context, { closeBreakpoint, open });
 
-    return { subscriptions, classes: [
+    return [
         ...slide, 
         right ? right_0 : left_0, 
         absolute, top_0, overflow_hidden, 
         h_full, z_20,
         ...bp,
         drawerSize(size)
-    ] };
-})
+    ].concat(other);
+}
+
+export const drawer = (props,...other) => drawerR(props, ...other).join(' ');

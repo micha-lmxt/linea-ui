@@ -5,7 +5,11 @@ import { flex_row } from 'linea-ui-project-css/css/flex-row';
 import { justifyClass } from './justify';
 
 
-export const hFlex = baseAction((node, props) => {
+export const hFlexA = baseAction((node, props) => {
+    return { classes: hFlexR(props)}
+})
+
+export const hFlexR = (props, ...other) => {
     const { justify } = props;
 
     const classes = [
@@ -16,5 +20,7 @@ export const hFlex = baseAction((node, props) => {
     if (justify){
         classes.push(justifyClass(justify))
     }
-    return { classes }
-})
+    return classes.concat(other)
+};
+
+export const hFlex = (props, ...other) => hFlexR(props,...other).join(' ');

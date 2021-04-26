@@ -9,7 +9,7 @@ export const H1A = baseAction((node, props) => {
     return {classes:H1R(props)}
 })
 
-export const H1R = (props, ...other) => [
+export const H1R = (props={}, ...other) => [
         ...getColor(props.color,props.colorDark),
         text_3xl,
         p_2,m_2, font_bold

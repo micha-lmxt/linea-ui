@@ -10,4 +10,4 @@ export const _list = [py_2, rounded];
 
 export const listR = (props, ...other) => _list.concat(other);
 
-export const list = (props, ...other) => listR.join(' ');
+export const list = (props, ...other) => listR(props,...other).join(' ');

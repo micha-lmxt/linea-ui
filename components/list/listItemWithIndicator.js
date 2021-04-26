@@ -19,6 +19,6 @@ const _listItemWithIndicatorR = [
         p_2, m_2
     ]
 
-const listItemWithIndicatorR = (props, ...other) => _listItemWithIndicatorR.concat(other)
+export const listItemWithIndicatorR = (props, ...other) => _listItemWithIndicatorR.concat(other)
 
-const listItemWithIndicator = (props, ...other) => listItemWithIndicatorR(props, ...other).join(' ');
+export const listItemWithIndicator = (props, ...other) => listItemWithIndicatorR(props, ...other).join(' ');

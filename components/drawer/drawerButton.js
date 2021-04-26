@@ -37,4 +37,4 @@ export const drawerButtonR = (props, ...other) => {
             [lg_opacity_0, lg_w_0] : []).concat(other);
 }
 
-export const drawerButton = (props, ...other) = drawerButtonR(props, ...other).join(' ')
+export const drawerButton = (props, ...other) => drawerButtonR(props, ...other).join(' ')

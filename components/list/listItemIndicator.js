@@ -10,9 +10,9 @@ export const listItemIndicatorA = baseAction((node, props) => {
     return { classes }
 })
 
-const listItemIndicatorR = (props, ...other) => [
+export const listItemIndicatorR = (props, ...other) => [
         ...getBgColor(props.color||"primary",props.colorDark||"primary"),
         props.thin ? w_1 : w_2
     ]
     
-const listItemIndicator = (props, ...other) => listItemIndicatorR(props, ...other).join(' ');
+export const listItemIndicator = (props, ...other) => listItemIndicatorR(props, ...other).join(' ');

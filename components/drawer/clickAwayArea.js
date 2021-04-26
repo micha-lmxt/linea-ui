@@ -26,6 +26,8 @@ export const clickAwayAreaA = (node, props) => {
     
     if (!closeBreakpoint){
         bp = getContext(context, update, node);
+        update(bp)
+        console.log(bp)
     }
 
     return {

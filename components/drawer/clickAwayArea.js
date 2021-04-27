@@ -3,7 +3,7 @@ import { absolute } from 'linea-ui-project-css/css/absolute';
 import { inset_0 } from 'linea-ui-project-css/css/inset-0';
 import { z_30 } from 'linea-ui-project-css/css/z-30';
 import { m_0 } from 'linea-ui-project-css/css/m-0';
-import { transition_opacity } from 'linea-ui-project-css/css/transition-opacity';
+import { transition_all } from 'linea-ui-project-css/css/transition-all';
 import { duration_700 } from 'linea-ui-project-css/css/duration-700';
 import {cleanup, setClasses} from '../../utils/setClasses.js';
 import {getContext, unsubscribe} from '../../Context/keyContext';
@@ -44,8 +44,8 @@ export const clickAwayAreaR = (props={}, ...other) => {
             closeBreakpoint === "lg" ?
             [lg_hidden] : [])
         .concat([open?opacity_40:opacity_0,absolute,inset_0,m_0,
-                 transition_opacity,duration_700])
-        .concat(open?[z_30,getBgColor(props.color||"black",props.colorDark||'black')]:[pointer_events_none])
+                 transition_all,duration_700])
+        .concat(open?[z_30,...getBgColor(props.color||"black",props.colorDark||'black')]:[pointer_events_none])
         .concat(other);
 }
 

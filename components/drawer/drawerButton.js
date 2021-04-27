@@ -20,7 +20,7 @@ export const drawerButtonA = (node, props={}) => {
     }
     
     if (!closeBreakpoint){
-        bp = getContext(context, update, node)||{};
+        bp = {...props,...(getContext(context, update, node)||{})};
         
     }
     update(bp)

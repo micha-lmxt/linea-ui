@@ -9,7 +9,7 @@ export const bigContainerA = baseAction((node, props) => {
     return { classes: bigContainerR(props) }
 })
 
-export const bigContainerR = (props, ...other) => {
+export const bigContainerR = (props={}, ...other) => {
     const {relative} = props; 
     
     const classes = [

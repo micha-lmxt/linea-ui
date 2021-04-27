@@ -49,6 +49,5 @@ const getColDark = (type) => {
 }
 
 export const getColor = (light, dark) => {
-    console.log(light, dark)
     return [getCol(light), getColDark(dark)]
 }

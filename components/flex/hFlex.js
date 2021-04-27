@@ -9,7 +9,7 @@ export const hFlexA = baseAction((node, props) => {
     return { classes: hFlexR(props)}
 })
 
-export const hFlexR = (props, ...other) => {
+export const hFlexR = (props={}, ...other) => {
     const { justify } = props;
 
     const classes = [

@@ -15,4 +15,4 @@ export const H1R = (props={}, ...other) => [
         p_2,m_2, font_bold
     ].concat(other)
 
-export const H1 = (props, ...other) => H1R(props, ...other);
+export const H1 = (props, ...other) => H1R(props, ...other).join(' ');

@@ -5,12 +5,12 @@ import { getBgColor } from '../../utils/getBgColor';
 
 export const listItemIndicatorA = baseAction((node, props) => {
 
-    const classes = listItemIndicator(props)
+    const classes = listItemIndicatorR(props)
 
     return { classes }
 })
 
-export const listItemIndicatorR = (props, ...other) => [
+export const listItemIndicatorR = (props={}, ...other) => [
         ...getBgColor(props.color||"primary",props.colorDark||"primary"),
         props.thin ? w_1 : w_2
     ]

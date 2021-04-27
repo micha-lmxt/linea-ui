@@ -14,7 +14,7 @@ import { opacity_40 } from 'linea-ui-project-css/css/opacity-40';
 import { opacity_0} from 'linea-ui-project-css/css/opacity-0';
 import {getBgColor} from '../../utils/getBgColor';
 
-export const clickAwayAreaA = (node, props) => {
+export const clickAwayAreaA = (node, props={}) => {
     const { closeBreakpoint , context="drawer"} = props;
     let bp = closeBreakpoint;
     let last = [];
@@ -25,7 +25,7 @@ export const clickAwayAreaA = (node, props) => {
     }
     
     if (!closeBreakpoint){
-        bp = getContext(context, update, node);
+        bp = getContext(context, update, node)||{};
         update(bp)
         console.log(bp)
     }

@@ -9,7 +9,7 @@ import {cleanup, setClasses} from '../../utils/setClasses.js';
 import {getContext, unsubscribe} from '../../Context/keyContext';
 
 
-export const drawerButtonA = (node, props) => {
+export const drawerButtonA = (node, props={}) => {
     const { closeBreakpoint , context="drawer"} = props;
     let bp = closeBreakpoint;
     let last = [];
@@ -20,8 +20,10 @@ export const drawerButtonA = (node, props) => {
     }
     
     if (!closeBreakpoint){
-        bp = getContext(context, update, node);
+        bp = getContext(context, update, node)||{};
+        
     }
+    update(bp)
 
     return {
         update,

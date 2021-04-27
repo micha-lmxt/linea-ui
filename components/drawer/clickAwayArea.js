@@ -16,7 +16,7 @@ import {getBgColor} from '../../utils/getBgColor';
 
 export const clickAwayAreaA = (node, props={}) => {
     const { closeBreakpoint , context="drawer"} = props;
-    let bp = closeBreakpoint;
+    let bp = props;
     let last = [];
     const update = (props) => {
         cleanup(node,last,[]);
@@ -25,11 +25,11 @@ export const clickAwayAreaA = (node, props={}) => {
     }
     
     if (!closeBreakpoint){
-        bp = getContext(context, update, node)||{};
-        update(bp)
+        bp = {...props,...(getContext(context, update, node)||{})};
+        
         console.log(bp)
     }
-
+    update(bp);
     return {
         update,
         destroy:() => unsubscribe(context,node)

@@ -12,7 +12,7 @@ export const codeA = baseAction((node, props) => {
 
 export const codeR = (props={}, ...other) => [
         ...getColor(props.color||"white",props.colorDark||"black"),
-        ...getBgColor(props.background||"black",props.backgroundDark||"white",
+        ...getBgColor(props.background||"black",props.backgroundDark||"white"),
         rounded,
         text_base,
         p_2, m_2

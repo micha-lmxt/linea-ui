@@ -12,7 +12,7 @@ import { md_hidden} from 'linea-ui-project-css/css/md:hidden';
 import { lg_hidden} from 'linea-ui-project-css/css/lg:hidden';
 import { opacity_40 } from 'linea-ui-project-css/css/opacity-40';
 import { opacity_0} from 'linea-ui-project-css/css/opacity-0';
-
+import {getBgColor} from '../../utils/getBgColor';
 
 export const clickAwayAreaA = (node, props) => {
     const { closeBreakpoint , context="drawer"} = props;
@@ -44,7 +44,7 @@ export const clickAwayAreaR = (props={}, ...other) => {
             [lg_hidden] : [])
         .concat([open?opacity_40:opacity_0,absolute,inset_0,m_0,
                  transition_opacity,duration_700])
-        .concat(open?[z_30]:[])
+        .concat(open?[z_30,getBgColor()]:[])
         .concat(other);
 }
 

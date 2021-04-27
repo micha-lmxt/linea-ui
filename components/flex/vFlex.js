@@ -8,7 +8,7 @@ export const vFlexA = baseAction((node, props) => {
     return { classes: vFlexR(props) }
 });
 
-export const vFlexR = (props, ...other) => {
+export const vFlexR = (props={}, ...other) => {
     const { justify } = props;
 
     const classes = [

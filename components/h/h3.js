@@ -15,5 +15,5 @@ export const H3R = (props={}, ...other) => [
         p_2,m_2, font_bold
     ].concat(other);
     
-export const H3 = (props, ...other) => H3R(props, ...other);
+export const H3 = (props, ...other) => H3R(props, ...other).join(' ');
 

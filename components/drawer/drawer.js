@@ -1,6 +1,6 @@
 import { baseAction } from '../../utils';
 // animation order is important!
-import { transition_transform } from 'linea-ui-project-css/css/transition-transform'
+import { transition_all } from 'linea-ui-project-css/css/transition-all'
 import { transform } from 'linea-ui-project-css/css/transform';
 import { absolute } from "linea-ui-project-css/css/absolute.js";
 import { top_0 } from "linea-ui-project-css/css/top-0.js";
@@ -59,7 +59,7 @@ export const drawerR = (props, ...other) => {
     
     let slide = [
             transform,
-            ...(animate ? [transition_transform, duration_700, ease_out] : []),
+            ...(animate ? [transition_all, duration_700, ease_out] : []),
             ...(open ? [] : [dir])
         ];
         

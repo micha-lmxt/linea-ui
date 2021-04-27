@@ -22,6 +22,7 @@ import { lg_static } from "linea-ui-project-css/css/lg:static.js";
 import { drawerSize } from './drawerSize';
 import { setContext } from '../../Context/keyContext';
 import { z_40 } from 'linea-ui-project-css/css/z-40';
+import { flex_shrink_0 } from "linea-ui-project-css/css/flex-shrink-0";
 
 export const drawerA = baseAction((node, props) => {
     
@@ -78,6 +79,7 @@ export const drawerR = (props, ...other) => {
         h_full, z_20,
         ...bp,
         drawerSize(size),
+        flex_shrink_0,
         z_40,
     ].concat(other);
 }

@@ -4,7 +4,7 @@ import { transition_all } from 'linea-ui-project-css/css/transition-all'
 import { transform } from 'linea-ui-project-css/css/transform';
 import { fixed } from "linea-ui-project-css/css/fixed.js";
 import { top_0 } from "linea-ui-project-css/css/top-0.js";
-import { h_auto } from "linea-ui-project-css/css/h-auto.js";
+import { h_full } from "linea-ui-project-css/css/h-full.js";
 import { duration_700 } from 'linea-ui-project-css/css/duration-700';
 import { ease_out } from 'linea-ui-project-css/css/ease-out';
 import { _translate_x_full } from 'linea-ui-project-css/css/-translate-x-full';
@@ -75,7 +75,7 @@ export const drawerR = (props, ...other) => {
         ...slide, 
         right ? right_0 : left_0, 
         fixed, top_0, 
-        h_auto, z_20,
+        h_full, z_20,
         ...bp,
         drawerSize(size),
         flex_shrink_0,

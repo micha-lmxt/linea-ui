@@ -45,7 +45,7 @@ export const clickAwayAreaR = (props={}, ...other) => {
             [lg_hidden] : [])
         .concat([open?opacity_40:opacity_0,absolute,inset_0,m_0,
                  transition_all,duration_700])
-        .concat(open?[z_30,...getBgColor(props.color||"black",props.colorDark||'black')]:[pointer_events_none])
+        .concat(open?[z_30,...getBgColor(props.color||"black",props.colorDark||'white')]:[pointer_events_none])
         .concat(other);
 }
 

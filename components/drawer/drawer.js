@@ -2,7 +2,7 @@ import { baseAction } from '../../utils';
 // animation order is important!
 import { transition_all } from 'linea-ui-project-css/css/transition-all'
 import { transform } from 'linea-ui-project-css/css/transform';
-import { absolute } from "linea-ui-project-css/css/absolute.js";
+import { fixed } from "linea-ui-project-css/css/fixed.js";
 import { top_0 } from "linea-ui-project-css/css/top-0.js";
 import { overflow_hidden } from "linea-ui-project-css/css/overflow-hidden.js";
 import { h_full } from "linea-ui-project-css/css/h-full.js";
@@ -75,7 +75,7 @@ export const drawerR = (props, ...other) => {
     return [
         ...slide, 
         right ? right_0 : left_0, 
-        absolute, top_0, overflow_hidden, 
+        fixed, top_0, overflow_hidden, 
         h_full, z_20,
         ...bp,
         drawerSize(size),

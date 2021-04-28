@@ -6,7 +6,7 @@ export const offsetA = baseAction((node, props) => {
         classes: offsetR(props)
     }
 })
-export const offsetR = (props={}, ...other) => [mt_20]
+export const offsetR = (props={}, ...other) => [mt_20].concat(other);
 
 export const offset = (props,...other) => offsetR(props, ...other).join(' ');
 

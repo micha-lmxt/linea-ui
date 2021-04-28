@@ -6,6 +6,7 @@ import { w_full } from 'linea-ui-project-css/css/w-full';
 import { items_center } from 'linea-ui-project-css/css/items-center';
 import { flex_wrap } from 'linea-ui-project-css/css/flex-wrap';
 import { z_20 } from 'linea-ui-project-css/css/z-20';
+import { z_40 } from 'linea-ui-project-css/css/z-40';
 import { p_4 } from 'linea-ui-project-css/css/p-4';
 import { m_0 } from 'linea-ui-project-css/css/m-0';
 import { h_16 } from 'linea-ui-project-css/css/h-16';
@@ -28,7 +29,7 @@ export const appbarR = (props={}, ...other) =>
       items_center,
       flex_wrap,
       flex,
-      z_20,
+      props.onTop?z_40:z_20,
       p_4,
       m_0,
       h_16,

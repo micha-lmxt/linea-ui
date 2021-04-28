@@ -1,5 +1,5 @@
 import { baseAction } from '../../utils';
-import { h_auto } from 'linea-ui-project-css/css/h-auto';
+import { h_screen } from 'linea-ui-project-css/css/h-screen';
 import {overflow_hidden} from 'linea-ui-project-css/css/overflow-hidden';
 import { overflow_y_auto } from 'linea-ui-project-css/css/overflow-y-auto';
 import { sticky } from 'linea-ui-project-css/css/sticky';
@@ -12,7 +12,7 @@ export const contentA = baseAction((node, props) => {
     }
 })
 export const contentR = (props={}, ...other) => [
-  h_auto,
+  h_screen,
   overflow_hidden,
   overflow_y_auto,
   sticky,

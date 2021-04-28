@@ -3,7 +3,8 @@ import {text_base} from 'linea-ui-project-css/css/text-base';
 import {getColor} from '../../utils/getColor';
 import {getBgColor} from '../../utils/getBgColor';
 import { p_4 } from 'linea-ui-project-css/css/p-4';
-import { m_2 } from 'linea-ui-project-css/css/m-2';
+import { mx_2 } from 'linea-ui-project-css/css/mx-2';
+import { my_4} from 'linea-ui-project-css/css/my-4;
 import { rounded } from 'linea-ui-project-css/css/rounded';
 
 export const codeA = baseAction((node, props) => {
@@ -15,7 +16,7 @@ export const codeR = (props={}, ...other) => [
         ...getBgColor(props.background||"black",props.backgroundDark||"white"),
         rounded,
         text_base,
-        p_4, m_2
+        p_4, mx_2, my_4
     ].concat(other)
     
 export const code = (props, ...other) => codeR(props, ...other).join(' ');

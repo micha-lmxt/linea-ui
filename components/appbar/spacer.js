@@ -6,7 +6,7 @@ export const spacerA = baseAction((node, props) => {
         classes: spacerR(props)
     }
 })
-export const spacerR = (props={}, ...other) => [flex_grow]
+export const spacerR = (props={}, ...other) => [flex_grow].concat(other);
 
 export const spacer = (props,...other) => spacerR(props, ...other).join(' ');
 

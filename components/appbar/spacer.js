@@ -1,5 +1,5 @@
 import { baseAction } from '../../utils';
-imporz { flex_grow } from 'linea-ui-project-css/css/flex-grow';
+import { flex_grow } from 'linea-ui-project-css/css/flex-grow';
 
 export const spacerA = baseAction((node, props) => {
     return {

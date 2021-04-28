@@ -8,7 +8,7 @@ export const linkA = baseAction((node, props) => {
 })
 
 export const linkR = (props={}, ...other) => [
-        ...getColor(props.color||"primary",props.colorDark||"primary"),
+        ...getColor(props.color||"primary",props.colorDark||"secondary-light"),
         underline,
         text_base
     ].concat(other)

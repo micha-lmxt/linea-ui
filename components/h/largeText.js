@@ -3,7 +3,7 @@ import {baseAction} from '../../utils';
 import {getColor} from '../../utils/getColor';
 import { p_2 } from 'linea-ui-project-css/css/p-2';
 import { mx_2 } from 'linea-ui-project-css/css/mx-2';
-import { my_4} from 'linea-ui-project-css/css/my-4;
+import { my_4} from 'linea-ui-project-css/css/my-4';
 
 
 export const largeTextA = baseAction((node, props) => {

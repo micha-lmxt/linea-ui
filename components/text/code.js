@@ -4,7 +4,7 @@ import {getColor} from '../../utils/getColor';
 import {getBgColor} from '../../utils/getBgColor';
 import { p_4 } from 'linea-ui-project-css/css/p-4';
 import { mx_2 } from 'linea-ui-project-css/css/mx-2';
-import { my_4} from 'linea-ui-project-css/css/my-4;
+import { my_4} from 'linea-ui-project-css/css/my-4';
 import { rounded } from 'linea-ui-project-css/css/rounded';
 
 export const codeA = baseAction((node, props) => {

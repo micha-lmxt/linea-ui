@@ -11,6 +11,8 @@ import { m_0 } from 'linea-ui-project-css/css/m-0';
 import { h_16 } from 'linea-ui-project-css/css/h-16';
 import { shadow } from 'linea-ui-project-css/css/shadow';
 import { flex } from 'linea-ui-project-css/css/flex';
+import { left_0 } from 'linea-ui-project-css/css/left-0';
+
 
 export const appbarA = baseAction((node, props) => {
     return {
@@ -30,6 +32,7 @@ export const appbarR = (props={}, ...other) =>
       p_4,
       m_0,
       h_16,
+      left_0,
       shadow
     ])
   .concat(other);

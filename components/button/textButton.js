@@ -53,6 +53,6 @@ export const textButton = (props, ...other) => textButtonR(props, ...other).join
 export const TextButton = base((props={})=>({
     class: textButton(props),
     ...(props.ripple!==false ?
-        getElement(action(ripples,addRipple,props))
+        getElement(action(ripples,props,addRipple))
     :{})
 }))

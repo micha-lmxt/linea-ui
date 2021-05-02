@@ -45,5 +45,5 @@ export const drawerButton = (props, ...other) => drawerButtonR(props, ...other).
 const buttons = {};
 export const DrawerButton = base((props)=>({
     class:drawerButton(props),
-    ...getElement(action(buttons,drawerButtonA,props))
+    ...getElement(action(buttons,props,drawerButtonA))
 }))

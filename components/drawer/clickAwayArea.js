@@ -57,7 +57,7 @@ const areas = {};
 
 export const ClickAwayArea = base((props={})=>({
     class:clickAwayArea(props),
-    ...getElement(action(areas,clickAwayAreaA,props))
+    ...getElement(action(areas,props,clickAwayAreaA))
 }))
 
 export default ClickAwayArea();

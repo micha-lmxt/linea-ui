@@ -4,6 +4,8 @@ import {w_full} from 'linea-ui-project-css/css/w-full';
 import {max_w_7xl} from 'linea-ui-project-css/css/max-w-7xl';
 import {mx_auto} from 'linea-ui-project-css/css/mx-auto';
 import {relative as relativeC} from 'linea-ui-project-css/css/relative';
+import { baseClass } from '../../utils/base';
+
 
 export const bigContainerA = baseAction((node, props) => {
     return { classes: bigContainerR(props) }
@@ -26,3 +28,7 @@ export const bigContainerR = (props={}, ...other) => {
 }
 
 export const bigContainer = (props, ...other) => bigContainerR(props, ...other).join(' ');
+
+export const BigContainer = baseClass(bigContainer);
+
+export default BigContainer();

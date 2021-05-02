@@ -1,5 +1,7 @@
 import { baseAction } from '../../utils';
 import { mt_20 } from 'linea-ui-project-css/css/mt-20';
+import { base } from '../../utils/base';
+
 
 export const offsetA = baseAction((node, props) => {
     return {
@@ -10,4 +12,5 @@ export const offsetR = (props={}, ...other) => [mt_20].concat(other);
 
 export const offset = (props,...other) => offsetR(props, ...other).join(' ');
 
-export default offset()
+export const Offset = base((props)=>{classes:offset(props)});
+export default Offset();

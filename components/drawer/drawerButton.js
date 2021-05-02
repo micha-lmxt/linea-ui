@@ -4,6 +4,10 @@ import { md_hidden } from 'linea-ui-project-css/css/md:hidden';
 import { lg_hidden } from 'linea-ui-project-css/css/lg:hidden';
 import {cleanup, setClasses} from '../../utils/setClasses.js';
 import {getContext, unsubscribe} from '../../Context/keyContext';
+import { base } from '../../utils/base';
+import {getElement} from '../../getElement';
+import {action} from '../../utils/actionStore';
+
 
 
 export const drawerButtonA = (node, props={}) => {
@@ -17,7 +21,7 @@ export const drawerButtonA = (node, props={}) => {
     }
     
     if (!closeBreakpoint){
-        bp = {...props,...(getContext(context, update, node)||{})};
+        bp = {...(getContext(context, update, node)||{}),...props};
         
     }
     update(bp)
@@ -37,3 +41,9 @@ export const drawerButtonR = (props, ...other) => {
 }
 
 export const drawerButton = (props, ...other) => drawerButtonR(props, ...other).join(' ')
+
+const buttons = {};
+export const DrawerButton = base((props)=>({
+    class:drawerButton(props),
+    ...getElement(action(buttons,drawerButtonA,props))
+}))

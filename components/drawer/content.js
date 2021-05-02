@@ -4,6 +4,7 @@ import {overflow_hidden} from 'linea-ui-project-css/css/overflow-hidden';
 import { overflow_y_auto } from 'linea-ui-project-css/css/overflow-y-auto';
 import { sticky } from 'linea-ui-project-css/css/sticky';
 import { top_0} from 'linea-ui-project-css/css/top-0';
+import { baseClass } from '../../utils/base';
 
 
 export const contentA = baseAction((node, props) => {
@@ -21,4 +22,7 @@ export const contentR = (props={}, ...other) => [
 
 export const content = (props,...other) => contentR(props, ...other).join(' ');
 
-export default content()
+export const Content = baseClass(content);
+
+export default Content()
+

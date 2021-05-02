@@ -4,11 +4,10 @@ import { flex_row } from 'linea-ui-project-css/css/flex-row';
 import { justify_between } from 'linea-ui-project-css/css/justify-between';
 import { p_2 } from 'linea-ui-project-css/css/p-2';
 import { m_2 } from 'linea-ui-project-css/css/m-2';
+import { baseClass } from '../../utils/base';
+
 
 export const listItemWithIndicatorA = baseAction((node, props) => {
-
-
-
     return { classes:_listItemWithIndicatorR }
 })
 
@@ -22,3 +21,6 @@ const _listItemWithIndicatorR = [
 export const listItemWithIndicatorR = (props, ...other) => _listItemWithIndicatorR.concat(other)
 
 export const listItemWithIndicator = (props, ...other) => listItemWithIndicatorR(props, ...other).join(' ');
+
+export const ListItemWithIndicator = baseClass(listItemWithIndicator);
+export default ListItemWithIndicator();

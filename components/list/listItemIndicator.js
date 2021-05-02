@@ -2,6 +2,8 @@ import { baseAction } from '../../utils';
 import { w_2 } from 'linea-ui-project-css/css/w-2';
 import { w_1 } from 'linea-ui-project-css/css/w-1';
 import { getBgColor } from '../../utils/getBgColor';
+import { baseClass } from '../../utils/base';
+
 
 export const listItemIndicatorA = baseAction((node, props) => {
 
@@ -16,3 +18,6 @@ export const listItemIndicatorR = (props={}, ...other) => [
     ]
     
 export const listItemIndicator = (props, ...other) => listItemIndicatorR(props, ...other).join(' ');
+
+export const ListItemIndicator = baseClass(listItemIndicator);
+export default ListItemIndicator();

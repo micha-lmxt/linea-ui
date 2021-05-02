@@ -4,7 +4,9 @@ import {getColor} from '../../utils/getColor';
 import { p_2 } from 'linea-ui-project-css/css/p-2';
 import { mx_2 } from 'linea-ui-project-css/css/mx-2';
 import { my_6} from 'linea-ui-project-css/css/my-6';
-import {font_bold} from 'linea-ui-project-css/css/font-bold'
+import {font_bold} from 'linea-ui-project-css/css/font-bold';
+import { baseClass } from '../../utils/base';
+
 
 export const H3A = baseAction((node, props) => {
     return {classes:H3R(props)}
@@ -16,5 +18,7 @@ export const H3R = (props={}, ...other) => [
         p_2,mx_2,my_6, font_bold
     ].concat(other);
     
-export const H3 = (props, ...other) => H3R(props, ...other).join(' ');
+export const _h3 = (props, ...other) => H3R(props, ...other).join(' ');
 
+export const H3 = baseClass(_h3);
+export default H3();

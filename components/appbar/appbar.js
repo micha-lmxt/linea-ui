@@ -1,4 +1,5 @@
 import { baseAction } from '../../utils';
+import { base } from '../../utils/base';
 import { getBgColor } from '../../utils/getBgColor';
 import { fixed } from 'linea-ui-project-css/css/fixed';
 import { top_0 } from 'linea-ui-project-css/css/top-0';
@@ -38,3 +39,5 @@ export const appbarR = (props={}, ...other) =>
     ])
   .concat(other);
 export const appbar = (props,...other) => appbarR(props, ...other).join(' ');
+
+export const Appbar=base((props)=>{class:appbar(props)});

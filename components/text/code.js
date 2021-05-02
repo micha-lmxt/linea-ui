@@ -6,6 +6,8 @@ import { p_4 } from 'linea-ui-project-css/css/p-4';
 import { mx_2 } from 'linea-ui-project-css/css/mx-2';
 import { my_4} from 'linea-ui-project-css/css/my-4';
 import { rounded } from 'linea-ui-project-css/css/rounded';
+import { baseClass } from '../../utils/base';
+
 
 export const codeA = baseAction((node, props) => {
     return {classes:codeR(props)}
@@ -20,3 +22,6 @@ export const codeR = (props={}, ...other) => [
     ].concat(other)
     
 export const code = (props, ...other) => codeR(props, ...other).join(' ');
+
+export const Code = baseClass(code);
+export default Code();

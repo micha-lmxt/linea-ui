@@ -5,13 +5,17 @@ import ripple from 'descent-ripple';
 import {fill_current} from 'linea-ui-project-css/css/fill-current';
 import {c} from 'linea-ui-project-css/css/c';
 import { opacity_30} from 'linea-ui-project-css/css/opacity-30';
+import { base } from '../../utils/base';
+import {getElement} from '../../getElement';
+import {action} from '../../utils/actionStore';
+
 
 export const textButtonA = chainAction(baseAction((node, props) => {
 
     return {
         classes: textButtonR(props)}
-}),
-    (node, props = {}) => {
+}),addRipple);
+const addRipple = (node, props = {}) => {
         const rippleBaseProps=(xprops)=>({
             nLines:0,
             nCircles:1,
@@ -21,11 +25,10 @@ export const textButtonA = chainAction(baseAction((node, props) => {
         let r = ripple(node,
             {
                 ...rippleBaseProps(props),
-                ...props.ripplePropsm,
+                ...props.rippleProps,
                 nLines:0
             }
         )
-        console.log(rippleBaseProps(props).circleProps)
         return {
             update: (nprops = {})=>{
                 r.update({
@@ -36,10 +39,20 @@ export const textButtonA = chainAction(baseAction((node, props) => {
             destroy:r.destroy
 
         }
-    })
-    
+}
+
+// dummy object for action store
+const ripples = {}
+
 export const textButtonR = (props, ...other) => getBgColor(props.background,props.backgroundDark)
             .concat(getColor(props.color,props.colorDark))
             .concat(other)
     
 export const textButton = (props, ...other) => textButtonR(props, ...other).join(' ');
+
+export const TextButton = base((props={})=>({
+    class: textButton(props),
+    ...(props.ripple!==false ?
+        getElement(action(ripples,addRipple,props))
+    :{})
+}))

@@ -14,6 +14,10 @@ import { opacity_40 } from 'linea-ui-project-css/css/opacity-40';
 import { opacity_0} from 'linea-ui-project-css/css/opacity-0';
 import {getBgColor} from '../../utils/getBgColor';
 import { pointer_events_none } from 'linea-ui-project-css/css/pointer-events-none';
+import { base } from '../../utils/base';
+import {getElement} from '../../getElement';
+import {action} from '../../utils/actionStore';
+
 
 export const clickAwayAreaA = (node, props={}) => {
     const { closeBreakpoint , context="drawer"} = props;
@@ -27,8 +31,6 @@ export const clickAwayAreaA = (node, props={}) => {
     
     if (!closeBreakpoint){
         bp = {...props,...(getContext(context, update, node)||{})};
-        
-        console.log(bp)
     }
     update(bp);
     return {
@@ -50,3 +52,12 @@ export const clickAwayAreaR = (props={}, ...other) => {
 }
 
 export const clickAwayArea = (props, ...other) => drawerButtonR(props, ...other).join(' ')
+
+const areas = {};
+
+export const ClickAwayArea = base((props={})=>({
+    class:clickAwayArea(props),
+    ...getElement(action(areas,clickAwayAreaA,props))
+}))
+
+export default ClickAwayArea();

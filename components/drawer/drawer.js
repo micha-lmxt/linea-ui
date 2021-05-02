@@ -22,10 +22,11 @@ import { drawerSize } from './drawerSize';
 import { setContext } from '../../Context/keyContext';
 import { z_40 } from 'linea-ui-project-css/css/z-40';
 import { flex_shrink_0 } from "linea-ui-project-css/css/flex-shrink-0";
+import { baseClass } from '../../utils/base';
 
 export const drawerA = baseAction((node, props) => {
     
-    const { open = true, right = false } = props;
+    const { open = false, right = false } = props;
 
     let subscriptions = [];
     
@@ -50,7 +51,7 @@ export const drawerA = baseAction((node, props) => {
 })
 
 export const drawerR = (props, ...other) => {
-    const { open = true, animate = "auto", right = false , closeBreakpoint = "md" , size, context="drawer"} = props;
+    const { open = false, animate = "auto", right = false , closeBreakpoint = "md" , size, context="drawer"} = props;
 
     let subscriptions = [];
 
@@ -84,3 +85,7 @@ export const drawerR = (props, ...other) => {
 }
 
 export const drawer = (props,...other) => drawerR(props, ...other).join(' ');
+
+export const Drawer = baseClass(drawer);
+
+export default Drawer();

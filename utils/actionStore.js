@@ -1,4 +1,16 @@
 const store=new Map();
+
+const onUnmount = (obj, node)=>(x,o)=>{
+    if (!x.find(v=>v.removedNodes.find(w=>w===node)
+    const map = store.get(obj);
+    if (!map){
+        return;
+    }
+    map.get(node)??.forEach(v=>v.destroy());
+    store.delete(node);
+    
+}
+
 export const action = (obj,props={},...act) => (node) => {
     if (!node){
         return;

@@ -12,5 +12,5 @@ export const spacerR = (props={}, ...other) => [flex_grow].concat(other);
 
 export const spacer = (props,...other) => spacerR(props, ...other).join(' ');
 
-export const Spacer=base((props=>{class:spacer(props)}))
+export const Spacer=base((props=>({class:spacer(props)})))
 export default Spacer();

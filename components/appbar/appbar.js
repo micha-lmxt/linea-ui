@@ -40,4 +40,4 @@ export const appbarR = (props={}, ...other) =>
   .concat(other);
 export const appbar = (props,...other) => appbarR(props, ...other).join(' ');
 
-export const Appbar=base((props)=>{class:appbar(props)});
+export const Appbar=base((props)=>({class:appbar(props)}));

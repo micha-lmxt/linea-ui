@@ -2,14 +2,11 @@ import {cleanup, setClasses} from './setClasses.js';
 
 export const baseAction = (cb) => (node,props) => {
     let classes = [];
-    let subscriptions = [];
-
-
 
     const setAction = (props={}) => {
-        cleanup(node,classes,subscriptions);
+        cleanup(node,classes);
 
-        ({classes=[],subscriptions=[]} = cb(node,props));
+        ({classes=[]} = cb(node,props,setAction));
 
         setClasses(node,classes);
 
@@ -19,7 +16,7 @@ export const baseAction = (cb) => (node,props) => {
     return {
         update: setAction,
         destroy: ()=>{
-            cleanup(undefined,[],subscriptions)
+            cleanup(undefined,[])
         }
     }
 }

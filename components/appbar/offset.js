@@ -12,5 +12,6 @@ export const offsetR = (props={}, ...other) => [mt_20].concat(other);
 
 export const offset = (props,...other) => offsetR(props, ...other).join(' ');
 
-export const Offset = base((props)=>({classes:offset(props)}));
+export const Offset = base((props)=>({class:offset(props)}));
+
 export default Offset();

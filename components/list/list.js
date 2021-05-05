@@ -1,7 +1,6 @@
 import {py_2} from 'linea-ui-project-css/css/py-2';
 import {rounded} from 'linea-ui-project-css/css/rounded';
 import {baseAction} from '../../utils';
-import { store } from '../../utils/store';
 import { baseClass } from '../../utils/base';
 
 export const listA = baseAction((node, props) => {

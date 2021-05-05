@@ -28,11 +28,13 @@ const onUnmount = (obj, node) => (x, o) => {
     type.delete(node);
 }
 
-export const action = (obj, props = {}, ...act) => (node) => {
+export const action = (obj, props = {}, ...act) => (node,init=false) => {
     if (!node) {
         return;
     }
+
     let map = store.get(obj);
+
     if (!map) {
         map = new Map();
         store.set(obj, map);
@@ -40,7 +42,7 @@ export const action = (obj, props = {}, ...act) => (node) => {
 
     const current = map.get(node);
     if (current) {
-        current.forEach(v => v.update(props));
+        current.forEach(v => v.update(props,init));
         return;
     }
     

@@ -1,11 +1,10 @@
-import { baseAction } from '../../utils';
 import { sm_hidden } from 'linea-ui-project-css/css/sm:hidden';
 import { md_hidden } from 'linea-ui-project-css/css/md:hidden';
 import { lg_hidden } from 'linea-ui-project-css/css/lg:hidden';
 import {cleanup, setClasses} from '../../utils/setClasses.js';
 import {getContext, unsubscribe} from '../../Context/keyContext';
 import { base } from '../../utils/base';
-import {getElement} from '../../getElement';
+import {getElement} from '../../Context/getElement';
 import {action} from '../../utils/actionStore';
 
 
@@ -15,6 +14,9 @@ export const drawerButtonA = (node, props={}) => {
     let bp = closeBreakpoint;
     let last = [];
     const update = (props) => {
+        if (init){
+            last = clickAwayAreaR(props1)
+        }
         cleanup(node,last,[]);
         last = drawerButtonR(props)
         setClasses(node,last)

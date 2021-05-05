@@ -8,7 +8,9 @@ export const setContext = (key,value) => {
     }
     if (keyContextStore.get(key)){
         const item = keyContextStore.get(key);
-        item.subscriptions.forEach(v=>v(value));
+        item.subscriptions.forEach(v=>{
+            v(value)
+        });
         item.value = value;
         return;
     }

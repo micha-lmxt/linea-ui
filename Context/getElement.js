@@ -1,6 +1,6 @@
 import {tick} from 'svelte';
 
-let id=0;
+let i=0;
 let dirty = false;
 let requests = new Map();
 
@@ -19,12 +19,9 @@ const requestGet = (id,callback,trys) => {
             const key = el.dataset.__getel__;
             const cb = requests.get(key);
             if(cb){
-                
-                cb.callback(el);
-                
+                cb.callback(el,true);
                 requests.delete(key)
             }
-            
             delete el.dataset.__getel__;
         }
         dirty=false;
@@ -46,6 +43,15 @@ const requestGet = (id,callback,trys) => {
 const numtrys = 10;
 
 export const getElement = (callback) => {
+    let browser = false;
+    try {
+        if (document){
+            browser = true;
+        }
+    } catch(e){}
+    if (!browser){
+        return {}
+    }
     const id = i++;
     requestGet(id,callback,numtrys);
     return {"data-__getel__":id};

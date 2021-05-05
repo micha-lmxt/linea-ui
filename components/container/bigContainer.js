@@ -5,6 +5,7 @@ import {max_w_7xl} from 'linea-ui-project-css/css/max-w-7xl';
 import {mx_auto} from 'linea-ui-project-css/css/mx-auto';
 import {relative as relativeC} from 'linea-ui-project-css/css/relative';
 import { baseClass } from '../../utils/base';
+import {setContext} from '../../Context/keyContext';
 
 
 export const bigContainerA = baseAction((node, props) => {
@@ -12,7 +13,7 @@ export const bigContainerA = baseAction((node, props) => {
 })
 
 export const bigContainerR = (props={}, ...other) => {
-    const {relative} = props; 
+    const {relative,context="container"} = props; 
     
     const classes = [
         w_full,
@@ -23,7 +24,9 @@ export const bigContainerR = (props={}, ...other) => {
     if (relative){
         classes.push(relativeC)
     }
-    
+
+    setContext(context, { width:max_w_7xl });
+
     return classes.concat(other);
 }
 

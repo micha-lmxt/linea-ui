@@ -1,71 +1,71 @@
 const handler = {
-    get:(t,p) => {
-        if (p === "add"){
+    get: (t, p) => {
+        if (p === "add") {
             return add(t)
         }
-        if(p === "remove"){
+        if (p === "remove") {
             return remove(t)
         }
-        return Reflect.get(t,p);
+        return Reflect.get(t, p);
     }
 }
 
 const add = (o) => (...x) => {
-    
-    let classes = o.class?[o.class]:[];
+
+    let classes = o.class ? [o.class] : [];
     let obj = o;
-    for (let t of x){
-        
-        if (!t){
+    for (let t of x) {
+
+        if (!t) {
             continue;
         }
-        
-        if (typeof t === "string"){
+
+        if (typeof t === "string") {
             classes.push(t);
             continue;
         }
-        
-        if( typeof t === "object"){
-            if (t.class){
+
+        if (typeof t === "object") {
+            if (t.class) {
                 classes.push(t.class);
             }
-            obj = {...obj,t};
+            obj = { ...obj, ...t };
             continue;
         }
-        console.log(t,typeof t, " is not allowed");
+        console.log(t, typeof t, " is not allowed");
     }
-    return new Proxy({...obj, class:classes.join(' ')}, handler)
+    return new Proxy({ ...obj, class: classes.join(' ') }, handler)
 }
 
 const remove = (o) => (...classes) => {
     o.class = o.class.split(' ')
-        .filter(v=>!classes.includes(v));
-    return new Proxy(o,handler);
+        .filter(v => !classes.includes(v));
+    return new Proxy(o, handler);
 }
 
 const custom = (t) => (defaultProps,
     ...more) => {
-        let z = more;
-        const der= (props) => {
-            const p = {...defaultProps,...props};
-            return add(t(p))(
-                    ...z.map(v=>typeof v === 'function'?
-                        v(p) : v)
-                )
-            }
+    let z = more;
+    const der = (props) => {
+        const p = { ...defaultProps, ...props };
+        return add(t(p))(
+            ...z.map(v => typeof v === 'function' ?
+                v(p) : v)
         )
-        return new Proxy(der,functionHandler)
+    }
+
+    return new Proxy(der, functionHandler)
 }
 
-const removeStore = (s)=>(...classes)=>{
-    const der = derived(s,$s=>(props)=>$s(props).remove(...classes))
+const removeStore = (s) => (...classes) => {
+    const der = derived(s, $s => (props) => $s(props).remove(...classes))
 
-    return new Proxy(der,functionHandler)
+    return new Proxy(der, functionHandler)
 }
 
-const functionHandler={
-    get:(t,p)=>{
-        if (p==='remove'){
+const functionHandler = {
+    get: (t, p) => {
+        if (p === 'remove') {
             return removeStore(t);
         }
         return custom(t);
@@ -73,9 +73,9 @@ const functionHandler={
 }
 
 export const base = (o) => {
-    
-    const w = (props)=>new Proxy(o(props),handler);
-    
-    return new Proxy(w,functionHandler);
+
+    const w = (props) => new Proxy(o(props), handler);
+
+    return new Proxy(w, functionHandler);
 }
-export const baseClass = (o) => base((p={})=>{class:o(p)})
+export const baseClass = (classGeneratingFunction) => base((props = {}) => ({ class: classGeneratingFunction(props) }));

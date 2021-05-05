@@ -1,4 +1,3 @@
-import { baseAction } from '../../utils';
 import { absolute } from 'linea-ui-project-css/css/absolute';
 import { inset_0 } from 'linea-ui-project-css/css/inset-0';
 import { z_30 } from 'linea-ui-project-css/css/z-30';
@@ -15,17 +14,22 @@ import { opacity_0} from 'linea-ui-project-css/css/opacity-0';
 import {getBgColor} from '../../utils/getBgColor';
 import { pointer_events_none } from 'linea-ui-project-css/css/pointer-events-none';
 import { base } from '../../utils/base';
-import {getElement} from '../../getElement';
+import {getElement} from '../../Context/getElement';
 import {action} from '../../utils/actionStore';
 
 
 export const clickAwayAreaA = (node, props={}) => {
+
     const { closeBreakpoint , context="drawer"} = props;
     let bp = props;
     let last = [];
-    const update = (props) => {
+    const update = (props1,init=false) => {
+        if (init){
+            last = clickAwayAreaR(props1);
+        }
+        bp = {...bp,...props1};
         cleanup(node,last,[]);
-        last = clickAwayAreaR(props)
+        last = clickAwayAreaR(bp)
         setClasses(node,last)
     }
     
@@ -34,7 +38,7 @@ export const clickAwayAreaA = (node, props={}) => {
     }
     update(bp);
     return {
-        update,
+        update:update,
         destroy:() => unsubscribe(context,node)
     }
 }
@@ -51,12 +55,12 @@ export const clickAwayAreaR = (props={}, ...other) => {
         .concat(other);
 }
 
-export const clickAwayArea = (props, ...other) => drawerButtonR(props, ...other).join(' ')
+export const clickAwayArea = (props, ...other) => clickAwayAreaR(props, ...other).join(' ')
 
 const areas = {};
 
 export const ClickAwayArea = base((props={})=>({
-    class:clickAwayArea(props),
+    class: clickAwayArea(props),
     ...getElement(action(areas,props,clickAwayAreaA))
 }))
 

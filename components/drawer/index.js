@@ -1,1 +1,1 @@
-export {drawer} from './drawer';
+export {drawer, Drawer} from './drawer';

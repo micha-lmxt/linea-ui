@@ -13,16 +13,23 @@ import { m_0 } from 'linea-ui-project-css/css/m-0';
 import { h_16 } from 'linea-ui-project-css/css/h-16';
 import { shadow } from 'linea-ui-project-css/css/shadow';
 import { flex } from 'linea-ui-project-css/css/flex';
-import { left_0 } from 'linea-ui-project-css/css/left-0';
+import { getContext } from '../../Context/keyContext';
+import {getElement} from '../../Context/getElement';
+import {action} from '../../utils/actionStore';
 
 
-export const appbarA = baseAction((node, props) => {
+export const appbarA = baseAction((node, props, update) => {
+    const {context="container"} = props;
+    const {width} = getContext(context,(node,p)=> update(p), node)||{};
     return {
-        classes: appbarR(props)
+        classes: appbarR(props).concat(width?[width]:[])
     }
 })
-export const appbarR = (props={}, ...other) => 
-  getBgColor(props.color, props.colorDark)
+export const appbarR = (props={}, ...other) => {
+
+  
+  return getBgColor(props.color, props.colorDark)
+  
   .concat([
       fixed,
       top_0,
@@ -34,10 +41,16 @@ export const appbarR = (props={}, ...other) =>
       p_4,
       m_0,
       h_16,
-      left_0,
-      shadow
+      shadow,
     ])
   .concat(other);
+}
+
 export const appbar = (props,...other) => appbarR(props, ...other).join(' ');
 
-export const Appbar=base((props)=>({class:appbar(props)}));
+const appbars={};
+export const Appbar=base((props)=>(
+  {
+    class:appbar(props),
+    ...getElement(action(appbars,props,appbarA))
+  }));

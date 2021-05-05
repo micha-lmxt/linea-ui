@@ -1,1 +1,1 @@
-export {appbar} from './appbar.js';
+export {appbar,Appbar} from './appbar.js';

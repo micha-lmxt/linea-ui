@@ -1,5 +1,5 @@
 import {baseAction} from '../../utils';
-import {text_lg} from 'linea-ui-project-css/css/text-lg';
+import {text_2xl} from 'linea-ui-project-css/css/text-2xl';
 import {getColor} from '../../utils/getColor';
 import { p_2 } from 'linea-ui-project-css/css/p-2';
 import { mx_2 } from 'linea-ui-project-css/css/mx-2';
@@ -8,17 +8,17 @@ import {font_bold} from 'linea-ui-project-css/css/font-bold';
 import { baseClass } from '../../utils/base';
 
 
-export const H6A = baseAction((node, props) => {
-    return {classes:H6R(props)}
+export const H4A = baseAction((node, props) => {
+    return {classes:H4R(props)}
 })
 
-export const H6R = (props={},...other) => [
+export const H4R = (props={},...other) => [
         ...getColor(props.color,props.colorDark),
-        text_lg,
+        text_2xl,
         p_2, mx_2,my_4, font_bold
     ].concat(other)
 
-export const _h6 = (props, ...other) => H6R(props, ...other).join(' ');
+export const _h4 = (props, ...other) => H4R(props, ...other).join(' ');
 
-export const H6 = baseClass(_h6);
-export default H6();
+export const H4 = baseClass(_h4);
+export default H4();

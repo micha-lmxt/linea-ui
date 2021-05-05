@@ -23,6 +23,7 @@ import { setContext } from '../../Context/keyContext';
 import { z_40 } from 'linea-ui-project-css/css/z-40';
 import { flex_shrink_0 } from "linea-ui-project-css/css/flex-shrink-0";
 import { baseClass } from '../../utils/base';
+import { shadow } from 'linea-ui-project-css/css/shadow';
 
 export const drawerA = baseAction((node, props) => {
     
@@ -61,6 +62,7 @@ export const drawerR = (props, ...other) => {
         drawerSize(size),
         flex_shrink_0,
         z_40,
+        shadow
     ].concat(other);
 }
 

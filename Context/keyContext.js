@@ -24,10 +24,14 @@ export const getContext = (key,update,node) => {
     }
     const item = keyContextStore.get(key);
     if (!item){
-        keyContextStore.set(key, {subscriptions:new Map([[node, update]])});
+        if (node && update){
+            keyContextStore.set(key, {subscriptions:new Map([[node, update]])});
+        }
         return undefined;
     }
-    item.subscriptions.set(node, update);
+    if (node && update){
+        item.subscriptions.set(node, update);
+    }
     return item.value;
 }
 

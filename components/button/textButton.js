@@ -6,8 +6,7 @@ import {fill_current} from 'linea-ui-project-css/css/fill-current';
 import {c} from 'linea-ui-project-css/css/c';
 import { opacity_30} from 'linea-ui-project-css/css/opacity-30';
 import { base } from '../../utils/base';
-import {getElement} from '../../Context/getElement';
-import {action} from '../../utils/actionStore';
+
 
 
 export const textButtonA = chainAction(baseAction((node, props) => {
@@ -15,6 +14,7 @@ export const textButtonA = chainAction(baseAction((node, props) => {
     return {
         classes: textButtonR(props)}
 }),addRipple);
+
 const addRipple = (node, props = {}) => {
         const rippleBaseProps=(xprops)=>({
             nLines:0,
@@ -50,9 +50,7 @@ export const textButtonR = (props, ...other) => getBgColor(props.background,prop
     
 export const textButton = (props, ...other) => textButtonR(props, ...other).join(' ');
 
-export const TextButton = base((props={})=>({
-    class: textButton(props),
-    ...(props.ripple!==false ?
-        getElement(action(ripples,props,addRipple))
-    :{})
-}))
+export const TextButton = base(
+    { class: textButton},
+        addRipple
+)

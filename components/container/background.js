@@ -1,6 +1,6 @@
 import { baseAction } from '../../utils';
 import { getBgColor } from '../../utils/getBgColor';
-import { base } from '../../utils/base';
+import { baseClass } from '../../utils/base';
 
 
 export const backgroundA = baseAction((node, props) => {
@@ -12,4 +12,4 @@ export const backgroundR = (props={}, ...other) => getBgColor(props.color||"whit
 
 export const background = (props,...other) => backgroundR(props, ...other).join(' ');
 
-export const Background = base((props)=>({class:background(props)}))
+export const Background = baseClass(background)

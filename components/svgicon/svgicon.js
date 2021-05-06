@@ -26,5 +26,9 @@ export const svgicon = (props) => ({
   viewBox:"0 0 24 24"
  });
 
-export const SvgIcon = base(svgicon);
+export const SvgIcon = base(
+    {
+        class:p=>svgiconR(p).join(" "),
+        viewBox:_=>"0 0 24 24"
+    });
 export default SvgIcon();

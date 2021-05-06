@@ -1,18 +1,53 @@
-const handler = {
-    get: (t, p) => {
+import { getElement } from "../Context/getElement";
+import { action } from "./actionStore";
+
+const evaluate = (a,props={})=> {
+    const ret = {};
+    for (let key of Object.keys(a)){
+        if ( key === "data-__getel__"){
+            ret[key] = a[key].map(v=>{
+                // look if props are already mapped
+                if (v.props){
+                    return v;
+                }
+                else{
+                    return {act:v.act,props}
+                }
+            })
+            continue;
+        }
+        ret[key] = _=>a[key](props);
+    }
+    return ret;
+}
+
+const handler = (props) => ({
+    get: (t, p, __) => {
+        if (p==="evaluate"){
+            return evaluate(t,props);
+        }
         if (p === "add") {
-            return add(t)
+            return add(evaluate(t,props))
         }
         if (p === "remove") {
-            return remove(t)
+            return remove(evaluate(t,props))
         }
-        return Reflect.get(t, p);
+        const a = Reflect.get(t, p, __);
+        if (p === "data-__getel__") {
+            if (a && a.length>0){
+                return getElement(action(...a.map(v=>({...{props},...v}))))
+            }
+            return undefined;
+           
+        }
+        return a(props);
     }
-}
+})
 
 const add = (o) => (...x) => {
 
-    let classes = o.class ? [o.class] : [];
+    let classes = o.class ? [o.class()] : [];
+    let actions = o["data-__getel__"]||[];
     let obj = o;
     for (let t of x) {
 
@@ -24,23 +59,27 @@ const add = (o) => (...x) => {
             classes.push(t);
             continue;
         }
+        let ev = t.evaluate;
 
-        if (typeof t === "object") {
-            if (t.class) {
-                classes.push(t.class);
+        if (ev){
+            if (ev["data-__getel__"]){
+                actions = actions.concat(ev["data-__getel__"]);
             }
-            obj = { ...obj, ...t };
+            if (ev.class){
+                classes = classes.concat(ev.class());
+            }
+            obj = {...o,...ev};
             continue;
         }
         console.log(t, typeof t, " is not allowed");
     }
-    return new Proxy({ ...obj, class: classes.join(' ') }, handler)
+    return new Proxy({ ...obj, class: _=>classes.join(' '),"data-__getel__":actions}, handler())
 }
 
 const remove = (o) => (...classes) => {
-    o.class = o.class.split(' ')
+    o.class = _=>o.class().split(' ')
         .filter(v => !classes.includes(v));
-    return new Proxy(o, handler);
+    return new Proxy(o, handler());
 }
 
 const custom = (t) => (defaultProps,
@@ -48,18 +87,11 @@ const custom = (t) => (defaultProps,
     let z = more;
     const der = (props) => {
         const p = { ...defaultProps, ...props };
-        return add(t(p))(
+        return add(t(p).evaluate)(
             ...z.map(v => typeof v === 'function' ?
-                v(p) : v)
+                v(p).evaluate : v)
         )
     }
-
-    return new Proxy(der, functionHandler)
-}
-
-const removeStore = (s) => (...classes) => {
-    const der = derived(s, $s => (props) => $s(props).remove(...classes))
-
     return new Proxy(der, functionHandler)
 }
 
@@ -72,10 +104,30 @@ const functionHandler = {
     }
 }
 
+export const removeStore = (t)=> (...classes) => {
+    return (props) => {
+        return t(props).remove(...classes)
+    }
+}
+/*
 export const base = (o) => {
 
     const w = (props) => new Proxy(o(props), handler);
 
     return new Proxy(w, functionHandler);
 }
+
 export const baseClass = (classGeneratingFunction) => base((props = {}) => ({ class: classGeneratingFunction(props) }));
+*/
+export const base = (o, ...actions) => {
+    let x = o;
+    if (actions.length > 0) {
+        // actions are collected as an object, so that individual props can be added per action
+        x["data-__getel__"] = actions.map(v=>({act:v}));
+    }
+    const w = (props={}) => new Proxy(x, handler(props));
+
+    return new Proxy(w, functionHandler);
+}
+
+export const baseClass = (classGeneratingFunction) => base({ class: classGeneratingFunction });

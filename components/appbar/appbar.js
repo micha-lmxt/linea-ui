@@ -14,22 +14,22 @@ import { h_16 } from 'linea-ui-project-css/css/h-16';
 import { shadow } from 'linea-ui-project-css/css/shadow';
 import { flex } from 'linea-ui-project-css/css/flex';
 import { getContext } from '../../Context/keyContext';
-import {getElement} from '../../Context/getElement';
-import {action} from '../../utils/actionStore';
+
 
 
 export const appbarA = baseAction((node, props, update) => {
     const {context="container"} = props;
     const {width} = getContext(context,(node,p)=> update(p), node)||{};
     return {
-        classes: appbarR(props).concat(width?[width]:[])
+        classes: appbarR(props)
     }
 })
 export const appbarR = (props={}, ...other) => {
+  const {context="container"} = props;
+  const {width} = getContext(context)||{};
 
-  
   return getBgColor(props.color, props.colorDark)
-  
+  .concat(width?[width]:[])
   .concat([
       fixed,
       top_0,
@@ -49,8 +49,9 @@ export const appbarR = (props={}, ...other) => {
 export const appbar = (props,...other) => appbarR(props, ...other).join(' ');
 
 const appbars={};
-export const Appbar=base((props)=>(
+export const Appbar=base(
   {
-    class:appbar(props),
-    ...getElement(action(appbars,props,appbarA))
-  }));
+    class:appbar
+  },
+   appbarA
+  );

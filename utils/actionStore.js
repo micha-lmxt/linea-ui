@@ -28,33 +28,40 @@ const onUnmount = (obj, node) => (x, o) => {
     type.delete(node);
 }
 
-export const action = (obj, props = {}, ...act) => (node,init=false) => {
+export const action = (...act) => (node,init=false) => {
+
     if (!node) {
         return;
     }
+    for (let comb of act){
 
-    let map = store.get(obj);
+        const {act,props} = comb;
 
-    if (!map) {
-        map = new Map();
-        store.set(obj, map);
+        let map = store.get(act);
+
+        if (!map) {
+            map = new Map();
+            store.set(act, map);
+        }
+
+        const current = map.get(node);
+        if (current) {
+            current.forEach(v => v.update(props,init));
+            continue;
+        }
+        
+        // register new action
+
+        const observer = new MutationObserver(onUnmount(act, node));
+        
+        let n = node.parentNode;
+
+        while(n && n.tagName.toUpperCase() !== "HTML"){
+            observer.observe(n,{childList:true});
+            n = n.parentNode;
+        }
+
+        map.set(node, act(node, props));
     }
-
-    const current = map.get(node);
-    if (current) {
-        current.forEach(v => v.update(props,init));
-        return;
-    }
-    
-    const observer = new MutationObserver(onUnmount(obj, node));
-    
-    let n = node.parentNode;
-
-    while(n && n.tagName.toUpperCase() !== "HTML"){
-        observer.observe(n,{childList:true});
-        n = n.parentNode;
-    }
-
-    map.set(node, act.map(v => v(node, props)));
 
 } 

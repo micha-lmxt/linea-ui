@@ -4,8 +4,8 @@ let i=0;
 let dirty = false;
 let requests = new Map();
 
-const requestGet = (id,callback,trys) => {
-    requests.set(id.toString(), {callback,trys});
+const requestGet = (id,callback) => {
+    requests.set(id.toString(), {callback:[callback]});
     
     if (dirty){
         return;
@@ -19,7 +19,7 @@ const requestGet = (id,callback,trys) => {
             const key = el.dataset.__getel__;
             const cb = requests.get(key);
             if(cb){
-                cb.callback(el,true);
+                cb.callback.forEach(v=>v(el,true));
                 requests.delete(key)
             }
             delete el.dataset.__getel__;
@@ -27,20 +27,15 @@ const requestGet = (id,callback,trys) => {
         dirty=false;
         if (requests.size>0){
             requests.forEach((v,k)=>{
-                if (v.trys>0){
-                    requestGet(k,v.callback,v.trys-1);
-                }else{
-                    v.callback();
-                }
+                v.callback.forEach(w=>w());
             })
-        }else{
+            requests.clear();
             i=0;
         }
         
         
     })
 }
-const numtrys = 10;
 
 export const getElement = (callback) => {
     let browser = false;
@@ -50,9 +45,17 @@ export const getElement = (callback) => {
         }
     } catch(e){}
     if (!browser){
-        return {}
+        return undefined
     }
     const id = i++;
-    requestGet(id,callback,numtrys);
-    return {"data-__getel__":id};
+    requestGet(id,callback);
+    return id;
 }
+
+export const addRequest = (id,callback) => {
+    const req = requests.get(id.toString());
+    if (!req){
+        return;
+    }
+    req.callback.push(callback);
+};

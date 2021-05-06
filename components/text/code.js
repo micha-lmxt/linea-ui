@@ -24,4 +24,5 @@ export const codeR = (props={}, ...other) => [
 export const code = (props, ...other) => codeR(props, ...other).join(' ');
 
 export const Code = baseClass(code);
+
 export default Code();

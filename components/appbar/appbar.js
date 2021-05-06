@@ -48,10 +48,13 @@ export const appbarR = (props={}, ...other) => {
 
 export const appbar = (props,...other) => appbarR(props, ...other).join(' ');
 
-const appbars={};
+
 export const Appbar=base(
   {
     class:appbar
   },
    appbarA
   );
+
+  
+export default Appbar();

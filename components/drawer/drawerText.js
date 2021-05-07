@@ -1,13 +1,15 @@
-import { sm_hidden } from 'linea-ui-project-css/css/sm:hidden';
-import { md_hidden } from 'linea-ui-project-css/css/md:hidden';
-import { lg_hidden } from 'linea-ui-project-css/css/lg:hidden';
+import { hidden } from 'linea-ui-project-css/css/hidden';
+import { sm_block } from 'linea-ui-project-css/css/sm:block';
+import { md_block } from 'linea-ui-project-css/css/md:block';
+import { lg_block } from 'linea-ui-project-css/css/lg:block';
 import {cleanup, setClasses} from '../../utils/setClasses.js';
 import {getContext, unsubscribe} from '../../Context/keyContext';
 import { base } from '../../utils/base';
 
 
 
-export const drawerButtonA = (node, props={}) => {
+
+export const drawerTextA = (node, props={}) => {
     const { context="drawer"} = props;
     let bp = props;
     let last = [];
@@ -15,7 +17,7 @@ export const drawerButtonA = (node, props={}) => {
         bp = { ...bp, ...props1 };
         
         cleanup(node,last,[]);
-        last = drawerButtonR(bp)
+        last = drawerTextR(bp)
         setClasses(node,last)
     }
     
@@ -30,20 +32,20 @@ export const drawerButtonA = (node, props={}) => {
     }
 }
 
-export const drawerButtonR = (props, ...other) => {
+export const drawerTextR = (props, ...other) => {
     const {closeBreakpoint} = {...props,...getContext(props.context||"drawer")};
-    return (closeBreakpoint === "sm" ? [sm_hidden] :
-        closeBreakpoint === "md" ? [md_hidden] :
+    return (closeBreakpoint === "sm" ? [sm_block] :
+        closeBreakpoint === "md" ? [md_block] :
             closeBreakpoint === "lg" ?
-            [lg_hidden] : []).concat(other);
+            [lg_block] : []).concat(hidden).concat(other);
 }
 
-export const drawerButton = (props, ...other) => drawerButtonR(props, ...other).join(' ')
+export const drawerText = (props, ...other) => drawerTextR(props, ...other).join(' ')
 
 
 
-export const DrawerButton = base(
-    { class:drawerButton },
-    drawerButtonA
+export const DrawerText = base(
+    { class:drawerText },
+    drawerTextA
 )
-export default DrawerButton()
+export default DrawerText()

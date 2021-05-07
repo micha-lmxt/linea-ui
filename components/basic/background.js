@@ -13,3 +13,4 @@ export const backgroundR = (props={}, ...other) => getBgColor(props.color||"whit
 export const background = (props,...other) => backgroundR(props, ...other).join(' ');
 
 export const Background = baseClass(background)
+export default Background();

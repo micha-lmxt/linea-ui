@@ -16,9 +16,20 @@ import { dark_bg_tertiary } from 'linea-ui-project-css/css/dark:bg-tertiary';
 import { bg_secondary_light } from 'linea-ui-project-css/css/bg-secondary_light';
 import { dark_bg_secondary_light } from 'linea-ui-project-css/css/dark:bg-secondary_light';
 
+import { dark_bg_transparent } from 'linea-ui-project-css/css/dark:bg-transparent';
+import { bg_transparent } from 'linea-ui-project-css/css/bg-transparent';
+
+
+import { dark_bg_secondary_darker } from 'linea-ui-project-css/css/dark:bg-secondary_darker';
+import { bg_secondary_darker } from 'linea-ui-project-css/css/bg-secondary_darker';
+
 
 const getBg = (col) => {
     switch (col) {
+        case "none":
+            return undefined;
+        case "transparent":
+            return bg_transparent;
         case "primary":
             return bg_primary;
         case "tertiary":
@@ -27,6 +38,8 @@ const getBg = (col) => {
             return bg_secondary;
         case "secondary-light":
             return bg_secondary_light;
+        case "secondary-darker":
+            return bg_secondary_darker;
         case "black":
             return bg_black;
         case "grey-light":
@@ -41,12 +54,18 @@ const getBg = (col) => {
 }
 const getBgDark = (col) => {
     switch (col) {
+        case "none":
+            return undefined;
+        case "transparent":
+            return dark_bg_transparent;
         case "primary":
             return dark_bg_primary;
         case "tertiary":
             return dark_bg_tertiary;
         case "secondary":
             return dark_bg_secondary;
+        case "secondary-darker":
+            return dark_bg_secondary_darker;
         case "secondary-light":
             return dark_bg_secondary_light;
         case "white":
@@ -62,5 +81,14 @@ const getBgDark = (col) => {
     }
 }
 export const getBgColor = (light, dark) => {
-    return [getBg(light), getBgDark(dark)]
+    const ret = [];
+    const l = getBg(light);
+    if (l) {
+        ret.push(l)
+    }
+    const d = getBgDark(dark)
+    if (d) {
+        ret.push(d)
+    }
+    return ret
 }

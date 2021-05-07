@@ -19,7 +19,7 @@ import { base } from '../../utils/base';
 
 export const clickAwayAreaA = (node, props = {}) => {
 
-    const { closeBreakpoint, context = "drawer" } = props;
+    const { context = "drawer" } = props;
     let bp = props;
     let last = [];
     const update = (props1, init = false) => {
@@ -30,7 +30,7 @@ export const clickAwayAreaA = (node, props = {}) => {
 
     }
 
-    if (!closeBreakpoint) {
+    if (!bp.closeBreakpoint) {
         bp = { ...props, ...(getContext(context, update, node) || {}) };
     }
     update(bp);
@@ -55,17 +55,6 @@ export const clickAwayAreaR = (props = {}, ...other) => {
 
 export const clickAwayArea = (props, ...other) => clickAwayAreaR(props, ...other).join(' ')
 
-const areas = {};
-
-/*
-export const ClickAwayArea = base((props = {}) => {
-    
-    return {
-        class: clickAwayArea(props),
-        ...getElement(action(areas, props, clickAwayAreaA))
-    }
-})
-*/
 export const ClickAwayArea = base(
     { class: clickAwayArea },
     clickAwayAreaA

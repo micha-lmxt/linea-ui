@@ -24,7 +24,7 @@ const onUnmount = (obj, node) => (x, o) => {
     }
 
     const actions = type.get(node)||[];
-    actions.forEach(v=>v.destroy && v.destroy());
+    actions.destroy && actions.destroy();
     type.delete(node);
 }
 
@@ -46,7 +46,7 @@ export const action = (...act) => (node,init=false) => {
 
         const current = map.get(node);
         if (current) {
-            current.forEach(v => v.update(props,init));
+            current.update(props,init);
             continue;
         }
         

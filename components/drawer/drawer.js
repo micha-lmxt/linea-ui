@@ -11,7 +11,10 @@ import { _translate_x_full } from 'linea-ui-project-css/css/-translate-x-full';
 import { translate_x_full } from 'linea-ui-project-css/css/translate-x-full';
 import { left_0 } from 'linea-ui-project-css/css/left-0';
 import { right_0 } from 'linea-ui-project-css/css/right-0';
-import { z_20 } from 'linea-ui-project-css/css/z-20';
+import { z_40 } from 'linea-ui-project-css/css/z-40';
+import { sm_z_10 } from 'linea-ui-project-css/css/sm:z-10';
+import { md_z_10 } from 'linea-ui-project-css/css/md:z-10';
+import { lg_z_10 } from 'linea-ui-project-css/css/lg:z-10';
 import { sm_translate_x_0 } from 'linea-ui-project-css/css/sm:translate-x-0';
 import { md_translate_x_0 } from 'linea-ui-project-css/css/md:translate-x-0';
 import { lg_translate_x_0 } from 'linea-ui-project-css/css/lg:translate-x-0';
@@ -20,7 +23,7 @@ import { md_static } from "linea-ui-project-css/css/md:static.js";
 import { lg_static } from "linea-ui-project-css/css/lg:static.js";
 import { drawerSize } from './drawerSize';
 import { setContext } from '../../Context/keyContext';
-import { z_40 } from 'linea-ui-project-css/css/z-40';
+
 import { flex_shrink_0 } from "linea-ui-project-css/css/flex-shrink-0";
 import { baseClass } from '../../utils/base';
 import { shadow } from 'linea-ui-project-css/css/shadow';
@@ -47,9 +50,9 @@ export const drawerR = (props, ...other) => {
             ...(open ? [] : [dir])
         ];
         
-    let bp = closeBreakpoint === "sm" ? [sm_translate_x_0,sm_,sm_static] :
-        closeBreakpoint === "md" ? [md_translate_x_0,md_static] : 
-        closeBreakpoint === "lg" ? [lg_translate_x_0,lg_static] : [];
+    let bp = closeBreakpoint === "sm" ? [sm_translate_x_0,sm_,sm_static,sm_z_10] :
+        closeBreakpoint === "md" ? [md_translate_x_0,md_static,md_z_10] : 
+        closeBreakpoint === "lg" ? [lg_translate_x_0,lg_static,lg_z_10] : [];
     
     setContext(context, { closeBreakpoint, open });
 
@@ -57,7 +60,7 @@ export const drawerR = (props, ...other) => {
         ...slide, 
         right ? right_0 : left_0, 
         fixed, top_0, 
-        min_h_full, z_20,
+        min_h_full,
         ...bp,
         drawerSize(size),
         flex_shrink_0,

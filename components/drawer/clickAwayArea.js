@@ -1,4 +1,4 @@
-import { absolute } from 'linea-ui-project-css/css/absolute';
+import { fixed } from 'linea-ui-project-css/css/fixed';
 import { inset_0 } from 'linea-ui-project-css/css/inset-0';
 import { z_30 } from 'linea-ui-project-css/css/z-30';
 import { m_0 } from 'linea-ui-project-css/css/m-0';
@@ -47,7 +47,7 @@ export const clickAwayAreaR = (props = {}, ...other) => {
         closeBreakpoint === "md" ? [md_hidden] :
             closeBreakpoint === "lg" ?
                 [lg_hidden] : [])
-        .concat([open ? opacity_40 : opacity_0, absolute, inset_0, m_0,
+        .concat([open ? opacity_40 : opacity_0, fixed, inset_0, m_0,
             transition_all, duration_700])
         .concat(open ? [z_30, ...getBgColor(props.color || "black", props.colorDark || 'white')] : [pointer_events_none])
         .concat(other);

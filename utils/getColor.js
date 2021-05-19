@@ -1,5 +1,6 @@
 import { text_primary } from 'linea-ui-project-css/css/text-primary';
 import { text_secondary } from 'linea-ui-project-css/css/text-secondary';
+import { text_secondary_dark } from 'linea-ui-project-css/css/text-secondary_dark';
 import { text_tertiary } from 'linea-ui-project-css/css/text-tertiary';
 import { text_white } from 'linea-ui-project-css/css/text-white';
 import { text_black } from 'linea-ui-project-css/css/text-black';
@@ -23,6 +24,8 @@ const getCol = (type) => {
             return text_secondary;
         case "secondary-light":
             return text_secondary_light;
+        case "secondary-dark":
+            return text_secondary_dark;
         case "tertiary":
             return text_tertiary;
         case "white":

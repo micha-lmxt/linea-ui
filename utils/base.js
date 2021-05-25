@@ -30,6 +30,7 @@ const handler = (props) => ({
             return add(evaluate(t,props))
         }
         if (p === "remove") {
+            
             return remove(evaluate(t,props))
         }
         const a = Reflect.get(t, p, __);
@@ -77,8 +78,9 @@ const add = (o) => (...x) => {
 }
 
 const remove = (o) => (...classes) => {
-    o.class = _=>o.class().split(' ')
-        .filter(v => !classes.includes(v));
+    const v = o.class();
+    o.class = _=> v.split(' ')
+        .filter(v => !classes.includes(v)).join(" ");
     return new Proxy(o, handler());
 }
 
